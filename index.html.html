@@ -48,30 +48,27 @@
     cursor:none;
   }
 
-  /* ─── CURSOR ─── */
-  .cursor {
-    width:10px; height:10px;
-    background:var(--gold);
-    border-radius:50%;
-    position:fixed; top:0; left:0;
-    pointer-events:none; z-index:99999;
-    transform:translate(-50%,-50%);
-    transition:width .2s,height .2s,background .2s;
-    mix-blend-mode:screen;
-  }
-  .cursor-ring {
-    width:34px; height:34px;
-    border:1px solid rgba(201,168,76,0.4);
-    border-radius:50%;
-    position:fixed; top:0; left:0;
-    pointer-events:none; z-index:99998;
-    transform:translate(-50%,-50%);
-    transition:all .12s ease;
-  }
-  body:has(a:hover) .cursor,
-  body:has(button:hover) .cursor { width:18px; height:18px; background:var(--gold-light); }
-  body:has(a:hover) .cursor-ring,
-  body:has(button:hover) .cursor-ring { width:52px; height:52px; border-color:var(--gold); }
+ .cursor {
+  width: 20px;
+  height: 20px;
+  background: black;
+  border-radius: 50%;
+
+  position: fixed;   /* IMPORTANT */
+  top: 0;
+  left: 0;
+
+  pointer-events: none;  /* 🔥 THIS FIXES CLICK BLOCKING */
+  z-index: 9999;
+
+  transform: translate(-50%, -50%);
+}
+  const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
 
   /* ─── INTRO ─── */
   #intro {
